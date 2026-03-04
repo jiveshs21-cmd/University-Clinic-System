@@ -1,0 +1,30 @@
+System Requirements
+Functional Requirements
+
+The system should:
+
+Allow students to register accounts
+
+Allow students to login
+
+Allow students to view doctor availability
+
+Allow students to book appointments
+
+Allow students to cancel appointments
+
+Allow doctors to view appointment schedules
+
+Allow administrators to manage users and appointments
+
+
+Non-Functional Requirements
+The system should:
+
+Be easy to use
+
+Provide secure login access
+
+Be accessible through a web interface
+
+Provide quick response time
