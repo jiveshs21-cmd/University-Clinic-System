@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Clinic System</title>
+    <!-- Using FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --secondary: #64748b;
+            --bg: #f8fafc;
+            --white: #ffffff;
+            --text: #1e293b;
+            --success: #10b981;
+            --danger: #ef4444;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--white);
+            padding: 1rem 2rem;
+            box-shadow: var(--shadow);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links button {
+            background: none;
+            border: none;
+            margin-left: 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            color: var(--secondary);
+            transition: color 0.3s;
+        }
+
+        .nav-links button:hover {
+            color: var(--primary);
+        }
+
+        .nav-links button.active {
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            min-height: 80vh;
+        }
+
+        /* Sections */
+        .section {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Cards */
+        .card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .card.wide {
+            max-width: 100%;
+        }
+
+        h1, h2 {
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        /* Forms */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            font-weight: 600;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            margin-top: 10px;
+        }
+
+        .btn-outline:hover {
+            background: #eff6ff;
+        }
+
+        /* Dashboard Grid */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .dash-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .dash-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .dash-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        /* Confirmation */
+        .success-box {
+            text-align: center;
+            padding: 3rem;
+        }
+
+        .check-circle {
+            width: 80px;
+            height: 80px;
+            background: #d1fae5;
+            color: var(--success);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin: 0 auto 1.5rem auto;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .info-label { color: var(--secondary); }
+        .info-value { font-weight: bold; }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--secondary);
+            font-size: 0.9rem;
+            margin-top: 2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links { display: none; } /* Simplified for mobile */
+            .logo { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">
+            <i class="fas fa-hospital-symbol"></i> UniClinic
+        </div>
+        <div class="nav-links">
+            <button onclick="showSection('home')" id="nav-home" class="active">Home</button>
+            <button onclick="showSection('login')" id="nav-login">Login</button>
+            <button onclick="showSection('dashboard')" id="nav-dashboard" style="display:none;">Dashboard</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        
+        <!-- 1. Home Section -->
+        <div id="home" class="section active">
+            <div style="text-align: center; padding: 4rem 0;">
+                <h1 style="font-size: 3rem; color: var(--primary);">University Clinic</h1>
+                <p style="font-size: 1.2rem; color: var(--secondary); margin-bottom: 2rem;">
+                    Your health, our priority. Book appointments, view doctors, and manage your care online.
+                </p>
+                <button class="btn btn-primary" style="width: auto; padding: 1rem 3rem;" onclick="showSection('login')">
+                    Get Started
+                </button>
+            </div>
+            
+            <div class="dashboard-grid">
+                <div class="dash-card">
+                    <i class="fas fa-user-md dash-icon"></i>
+                    <h3>Expert Doctors</h3>
+                    <p>Access top medical professionals.</p>
+                </div>
+                <div class="dash-card">
+                    <i class="fas fa-calendar-check dash-icon"></i>
+                    <h3>Easy Booking</h3>
+                    <p>Schedule appointments in minutes.</p>
+                </div>
+                <div class="dash-card">
+                    <i class="fas fa-file-medical dash-icon"></i>
+                    <h3>Records</h3>
+                    <p>View your medical history securely.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Login Section -->
+        <div id="login" class="section">
+            <div class="card">
+                <h2 style="text-align: center;">Student Login</h2>
+                <form onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label>Student ID / Username</label>
+                        <input type="text" placeholder="Enter your ID" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" placeholder="Enter password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                    <button type="button" class="btn btn-outline">Register New Account</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- 3. Dashboard Section -->
+        <div id="dashboard" class="section">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                <h2>Student Dashboard</h2>
+                <span style="color: var(--secondary);">Welcome, Alex</span>
+            </div>
+            
+            <div class="dashboard-grid">
+                <div class="dash-card" onclick="showSection('book')">
+                    <i class="fas fa-user-md dash-icon"></i>
+                    <h3>View Doctors</h3>
+                </div>
+                <div class="dash-card" onclick="showSection('book')">
+                    <i class="fas fa-calendar-plus dash-icon"></i>
+                    <h3>Book Appointment</h3>
+                </div>
+                <div class="dash-card">
+                    <i class="fas fa-list dash-icon"></i>
+                    <h3>My Appointments</h3>
+                </div>
+                <div class="dash-card" onclick="handleLogout()">
+                    <i class="fas fa-sign-out-alt dash-icon" style="color: var(--danger);"></i>
+                    <h3 style="color: var(--danger);">Logout</h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. Book Appointment Section -->
+        <div id="book" class="section">
+            <div class="card">
+                <h2>Book Appointment</h2>
+                <form onsubmit="handleBooking(event)">
+                    <div class="form-group">
+                        <label>Select Doctor</label>
+                        <select id="doctor-select">
+                            <option value="Dr. Ali">Dr. Ali (General)</option>
+                            <option value="Dr. Sarah">Dr. Sarah (Dental)</option>
+                            <option value="Dr. Mike">Dr. Mike (Mental Health)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Date</label>
+                        <input type="date" id="date-select" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Time</label>
+                        <select id="time-select">
+                            <option>09:00 AM</option>
+                            <option>10:30 AM</option>
+                            <option>01:00 PM</option>
+                            <option>03:45 PM</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Confirm Booking</button>
+                    <button type="button" class="btn btn-outline" onclick="showSection('dashboard')">Cancel</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- 5. Confirmation Section -->
+        <div id="confirmation" class="section">
+            <div class="card success-box">
+                <div class="check-circle">
+                    <i class="fas fa-check"></i>
+                </div>
+                <h2>Appointment Confirmed!</h2>
+                <p style="margin-bottom: 2rem;">Your slot has been reserved successfully.</p>
+                
+                <div style="text-align: left; background: #f8fafc; padding: 1.5rem; border-radius: 8px;">
+                    <div class="info-row">
+                        <span class="info-label">Doctor</span>
+                        <span class="info-value" id="conf-doctor">Dr. Ali</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Date</span>
+                        <span class="info-value" id="conf-date">10 May</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Time</span>
+                        <span class="info-value" id="conf-time">10:30 AM</span>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary" style="margin-top: 2rem;" onclick="handleLogout()">Back to Dashboard</button>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        &copy; 2024 University Clinic System. All rights reserved.
+    </footer>
+
+    <script>
+        // Navigation Logic
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+            // Show target section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Update Nav Buttons
+            document.querySelectorAll('.nav-links button').forEach(btn => btn.classList.remove('active'));
+            const navBtn = document.getElementById('nav-' + sectionId);
+            if(navBtn) navBtn.classList.add('active');
+
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        // Login Logic
+        function handleLogin(e) {
+            e.preventDefault();
+            // Simulate login
+            document.getElementById('nav-login').style.display = 'none';
+            document.getElementById('nav-dashboard').style.display = 'block';
+            showSection('dashboard');
+        }
+
+        // Booking Logic
+        function handleBooking(e) {
+            e.preventDefault();
+            // Get values
+            const doctor = document.getElementById('doctor-select').value;
+            const date = document.getElementById('date-select').value;
+            const time = document.getElementById('time-select').value;
+
+            // Set confirmation values
+            document.getElementById('conf-doctor').innerText = doctor;
+            document.getElementById('conf-date').innerText = date;
+            document.getElementById('conf-time').innerText = time;
+
+            showSection('confirmation');
+        }
+
+        // Logout Logic
+        function handleLogout() {
+            document.getElementById('nav-login').style.display = 'block';
+            document.getElementById('nav-dashboard').style.display = 'none';
+            showSection('home');
+        }
+    </script>
+</body>
+</html>
