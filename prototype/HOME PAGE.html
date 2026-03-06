@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Clinic - Home</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <i class="fas fa-hospital-symbol"></i> UniClinic
+        </div>
+        <div class="nav-links">
+            <button onclick="location.href='index.html'" class="active">Home</button>
+            <button onclick="location.href='login.html'">Login</button>
+            <button onclick="location.href='dashboard.html'">Dashboard</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div style="text-align: center; padding: 4rem 0;">
+            <h1 style="font-size: 3rem; color: var(--primary);">University Clinic</h1>
+            <p style="font-size: 1.2rem; color: var(--secondary); margin-bottom: 2rem;">
+                Your health, our priority. Book appointments, view doctors, and manage your care online.
+            </p>
+            <button class="btn btn-primary" style="width: auto; padding: 1rem 3rem;" onclick="location.href='login.html'">
+                Get Started
+            </button>
+        </div>
+        
+        <div class="dashboard-grid">
+            <div class="dash-card">
+                <i class="fas fa-user-md dash-icon"></i>
+                <h3>Expert Doctors</h3>
+                <p>Access top medical professionals.</p>
+            </div>
+            <div class="dash-card">
+                <i class="fas fa-calendar-check dash-icon"></i>
+                <h3>Easy Booking</h3>
+                <p>Schedule appointments in minutes.</p>
+            </div>
+            <div class="dash-card">
+                <i class="fas fa-file-medical dash-icon"></i>
+                <h3>Records</h3>
+                <p>View your medical history securely.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2024 University Clinic System. All rights reserved.
+    </footer>
+</body>
+</html>
