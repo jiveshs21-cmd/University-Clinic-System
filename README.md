@@ -22,6 +22,8 @@ Clinic staff can manage appointments, update doctor schedules, maintain patient 
 By implementing this system, the university clinic can improve service efficiency, reduce administrative workload, and provide faster healthcare access to students.
 
 Key Features
+
+
 Student Features
 
 • Register and login using university credentials
@@ -30,6 +32,8 @@ Student Features
 • Access health information and announcements
 • View appointment history
 
+
+
 Clinic Staff Features
 
 • Manage appointment bookings
@@ -37,11 +41,15 @@ Clinic Staff Features
 • Maintain patient visit records
 • Send clinic announcements
 
+
+
 Administrator Features
 
 • Manage user accounts
 • Monitor system activity
 • Generate clinic reports
+
+
 
 System Actors
 
@@ -51,6 +59,8 @@ Clinic Staff / Doctor – manages appointments and patient records
 
 Administrator – manages the system and users
 
+
+
 Technologies Used
 
 • HTML / CSS / JavaScript
@@ -59,12 +69,16 @@ Technologies Used
 • GitHub for version control
 • Draw.io for system diagrams
 
+
+
 System Diagrams Included
 
 • Use Case Diagram
 • Class Diagram
 • Sequence Diagram
 • UI Sketches
+
+
 
 System Objectives
 
